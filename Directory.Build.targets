@@ -19,9 +19,9 @@
   <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" />
 
   <PropertyGroup>
-    <ArtifactsPackagesDir>$([MSBuild]::NormalizePath('$(ArtifactsDir)', 'packages/', '$(ConfigurationGroup)'))</ArtifactsPackagesDir>
-    <ArtifactsShippingPackagesDir>$([MSBuild]::NormalizePath('$(ArtifactsPackagesDir)', 'Shipping/'))</ArtifactsShippingPackagesDir>
-    <ArtifactsNonShippingPackagesDir>$([MSBuild]::NormalizePath('$(ArtifactsPackagesDir)', 'NonShipping/'))</ArtifactsNonShippingPackagesDir>
+    <ArtifactsPackagesDir>$([MSBuild]::NormalizePath('$(ArtifactsDir)', 'packages', '$(ConfigurationGroup)'))</ArtifactsPackagesDir>
+    <ArtifactsShippingPackagesDir>$([MSBuild]::NormalizeDirectory('$(ArtifactsPackagesDir)', 'Shipping'))</ArtifactsShippingPackagesDir>
+    <ArtifactsNonShippingPackagesDir>$([MSBuild]::NormalizeDirectory('$(ArtifactsPackagesDir)', 'NonShipping'))</ArtifactsNonShippingPackagesDir>
 
     <PackageOutputPath Condition="'$(IsShippingPackage)' == 'true'">$(ArtifactsShippingPackagesDir)</PackageOutputPath>
     <PackageOutputPath Condition="'$(IsShippingPackage)' != 'true'">$(ArtifactsNonShippingPackagesDir)</PackageOutputPath>
